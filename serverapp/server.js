@@ -1,5 +1,6 @@
 const express = require("express")
 const dotenv = require("dotenv")
+const cors = require("cors");
 const connectDB = require("./config/db")
 const studentRoutes = require("./routes/studentRoutes")
 
@@ -8,6 +9,9 @@ dotenv.config()
 connectDB()
 
 const app = express()
+
+// registering cors
+app.use(cors())
 
 app.use(express.json())
 

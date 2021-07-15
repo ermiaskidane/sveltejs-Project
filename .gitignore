@@ -1,2 +1,8 @@
+clientapp/.DS_Store
+clientapp/node_modules
+clientapp/.svelte-kit
+clientapp/build
+clientapp/functions
+
 serverapp/node_modules
 serverapp/.env
