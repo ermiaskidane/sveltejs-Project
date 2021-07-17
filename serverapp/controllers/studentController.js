@@ -11,6 +11,21 @@ const getAllStudent = asyncHandler(async(req, res) => {
     res.status(200).json(fetchedStudent)
 })
 
+// @desc get student
+// @route get /api/student/studId
+// @access Public
+
+const getOneStudent = asyncHandler(async(req, res) => {
+    const student = await Student.findById(req.params.studId)
+
+    if(student){
+        res.json(student)
+    } else {
+        res.status(404)
+        throw new Error("I couldnt find the student")
+    }
+})
+
 // @desc post student
 // @route post /api/student
 // @access Public
@@ -71,6 +86,7 @@ const deleteStudent = asyncHandler(async(req, res) => {
 })
 
 exports.getAllStudent = getAllStudent;
+exports.getOneStudent = getOneStudent;
 exports.addStudent = addStudent;
 exports.updateStudent = updateStudent;
 exports.deleteStudent = deleteStudent;
