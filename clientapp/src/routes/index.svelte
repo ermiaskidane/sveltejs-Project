@@ -1,5 +1,6 @@
 <script>
 	import { onMount } from 'svelte';
+	import { fade } from 'svelte/transition';
 	const baseUrl = 'http://localhost:5003/api/student';
 	let students = [];
 
@@ -19,30 +20,20 @@
 <div class="container py-2 mx-auto">
 	<div class="p-3">
 		<ul class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-screen-lg mt-16">
-			<li class="border py-4 px-2 flex flex-col items-center lg:py-6 shadow-xl ">
-				<h2 class="pb-4 text-2xl">Ermias Kidane</h2>
-				<p class=""><span class="capitalize">grade</span>: 16</p>
-				<p class=""><span class="capitalize">gender</span>: male</p>
-				<p class=""><span class="capitalize">School</span>: Institute of may nefhi</p>
-			</li>
-			<li class="border py-4 px-2 flex flex-col items-center lg:py-6 shadow-xl ">
-				<h2 class="pb-4 text-2xl">Ermias Kidane</h2>
-				<p class=""><span class="capitalize">grade</span>: 16</p>
-				<p class=""><span class="capitalize">gender</span>: male</p>
-				<p class=""><span class="capitalize">School</span>: Institute of may nefhi</p>
-			</li>
-			<li class="border py-4 px-2 flex flex-col items-center lg:py-6 shadow-xl ">
-				<h2 class="pb-4 text-2xl">Ermias Kidane</h2>
-				<p class=""><span class="capitalize">grade</span>: 16</p>
-				<p class=""><span class="capitalize">gender</span>: male</p>
-				<p class=""><span class="capitalize">School</span>: Institute of may nefhi</p>
-			</li>
-			<li class="border py-4 px-2 flex flex-col items-center lg:py-6 shadow-xl ">
-				<h2 class="pb-4 text-2xl">Ermias Kidane</h2>
-				<p class=""><span class="capitalize">grade</span>: 16</p>
-				<p class=""><span class="capitalize">gender</span>: male</p>
-				<p class=""><span class="capitalize">School</span>: Institute of may nefhi</p>
-			</li>
+			{#if students.length === 0}
+				<p>Loading</p>
+			{:else}
+				{#each students as student}
+				<li class="border py-4 px-2  lg:py-6 shadow-xl" transition:fade>
+				  <a class="list-none flex flex-col items-center" href={`/students/${student._id}`}>
+				  <h2 class="pb-4 text-2xl capitalize">{student.name}</h2>
+				  <p class=""><span class="capitalize">grade</span>: {student.grade}</p>
+				  <p class=""><span class="capitalize">gender</span>: {student.gender}</p>
+				  <p class=""><span class="capitalize">School</span>: {student.school}</p>
+				</a>
+				</li>
+				{/each}
+			{/if}
 		</ul>
 	</div>
 </div>
