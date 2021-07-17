@@ -42,7 +42,7 @@ let addStudent = async () => {
 }
 </script>
 
-<section class="">
+<section class="mt-6">
     <div class="container py-4">
         <div class="py-4 px-3">
             <h2 class="text-center text-2xl">Student Form</h2>
