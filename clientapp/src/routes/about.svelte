@@ -9,13 +9,44 @@ let data = {
     grade: "",
     school:""
 };
+    
+const baseUrl = "http://localhost:5003/api/student";
+
+let addStudent = async () => {
+    if(
+        data.name.trim() === "" ||
+        data.gender.trim() === "" ||
+        data.grade === "" ||
+        data.school.trim() === ""
+    ) {
+        return;
+    }
+
+    const res = await fetch(`${baseUrl}`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+    })
+
+    const post = res.json();
+    dispatch("studentCreated", post)
+
+    data = {
+    name: "",
+    gender: "",
+    grade: "",
+    school:""
+};
+}
 </script>
 
 <section class="">
     <div class="container py-4">
         <div class="py-4 px-3">
             <h2 class="text-center text-2xl">Student Form</h2>
-            <form class="flex flex-col items-center">
+            <form class="flex flex-col items-center" on:submit|preventDefault={addStudent}>
                 <div class="flex flex-col w-3/4 ">
                     <label for="name" class="py-2  text-base">Name</label>
                     <input
@@ -29,7 +60,7 @@ let data = {
                 <div class="flex flex-col w-3/4 ">
                     <label for="gender" class="py-2 text-base">Gender</label>
                     <input
-                     bind:value={data.name}
+                     bind:value={data.gender}
                      type="text"
                      class="p-2 outline-none rounded-sm  border border-gray-400"
                      id="gender"
