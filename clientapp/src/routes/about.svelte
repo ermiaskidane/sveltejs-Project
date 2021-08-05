@@ -41,6 +41,7 @@ let addStudent = async () => {
     grade: "",
     school:""
 };
+    loading = false;
 }
 </script>
 
@@ -48,6 +49,7 @@ let addStudent = async () => {
     <div class="container py-4">
         <div class="py-4 px-3">
             <h2 class="text-center text-2xl">Student Form</h2>
+            {#if !loading}
             <form class="flex flex-col items-center" on:submit|preventDefault={addStudent}>
                 <div class="flex flex-col w-3/4 ">
                     <label for="name" class="py-2  text-base">Name</label>
@@ -91,6 +93,9 @@ let addStudent = async () => {
                 </div>
                 <button type="submit" class="mt-8 bg-gray-500 py-2 px-2 rounded-sm w-1/4">Submit</button>
             </form>
+            {:else}
+				<p>Loading...</p>
+			{/if}
         </div>
     </div>
 </section>
