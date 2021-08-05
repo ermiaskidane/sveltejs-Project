@@ -2,7 +2,7 @@
     import { createEventDispatcher } from "svelte";
     const dispatch = createEventDispatcher();
 
-
+    let loading = false;
 let data = {
     name: "",
     gender: "",
@@ -21,6 +21,8 @@ let addStudent = async () => {
     ) {
         return;
     }
+    
+    loading = true;
 
     const res = await fetch(`${baseUrl}`, {
         method: "POST",
