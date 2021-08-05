@@ -40,12 +40,12 @@
 		// 	console.log('not', editStudent);
 		// }
 		const res = await fetch(`${baseUrl}`, {
-		    method: "POST",
-		    headers: {
-		        "Content-Type": "application/json"
-		    },
-		    body: JSON.stringify(data)
-		})
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(data)
+		});
 
 		// const res = await fetch(URL, {
 		// 	method,
@@ -127,4 +127,3 @@
 		</div>
 	</div>
 </section>
- 
