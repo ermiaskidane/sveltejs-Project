@@ -2,13 +2,13 @@
 	import { onMount } from 'svelte';
 	import { fade } from 'svelte/transition';
 	const baseUrl = 'http://localhost:5003/api/student';
-	let students = [];
+// 	let students = [];
 
-	onMount(async () => {
-		let res = await fetch(baseUrl);
-		students = await res.json();
-		console.log('onMount', students);
-	});
+// 	onMount(async () => {
+// 		let res = await fetch(baseUrl);
+// 		students = await res.json();
+// 		console.log('onMount', students);
+// 	});
 </script>
 
 <svelte:head>
