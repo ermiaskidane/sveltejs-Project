@@ -1,19 +1,32 @@
+<script context="module">
+	export async function load({page}) {
+		const baseUrl = 'http://localhost:5003/api/student';
+		const res = await fetch(baseUrl);
+		const data = await res.json();
+		console.log(data)
+		return {
+			props: {students: data}
+		}
+		
+	}
+</script>
 <script>
 	import { onMount } from 'svelte';
 	import { fade } from 'svelte/transition';
 	const baseUrl = 'http://localhost:5003/api/student';
-	let students = [];
+	// let students = [];
+	export let students
 
-	onMount(async () => {
-		let res = await fetch(baseUrl);
-		students = await res.json();
-		console.log('onMount', students);
-	});
+	// onMount(async () => {
+	// 	let res = await fetch(baseUrl);
+	// 	students = await res.json();
+	// 	console.log('onMount', students);
+	// });
 </script>
 
 <svelte:head>
 	<title>Svelte Project</title>
-</svelte:head>
+</svelte:head> 
 
 <h1 class="text-4xl text-center my-8 uppercase">SvelteKit Project</h1>
 
