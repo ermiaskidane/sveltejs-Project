@@ -2,7 +2,7 @@
 	import { createEventDispatcher } from 'svelte';
 	const dispatch = createEventDispatcher();
 
-	// export let editStudent;
+	export let editStudent;
 	let loading = false;
 
 	let data = {
@@ -13,7 +13,9 @@
 	};
 
 	// reacativity for the edit button
-	// $: data = editStudent;
+	$: data = editStudent;
+
+	
 
 	const baseUrl = 'http://localhost:5003/api/student';
 
@@ -30,30 +32,30 @@
 
 		loading = true;
 
-		// if (editStudent._id) {
-		// 	URL = `${baseUrl}/${editStudent._id}`;
-		// 	method = 'PUT';
-		// 	console.log('pre', editStudent);
-		// } else {
-		// 	URL = `${baseUrl}`;
-		// 	method = 'POST';
-		// 	console.log('not', editStudent);
-		// }
-		const res = await fetch(`${baseUrl}`, {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify(data)
-		});
-
-		// const res = await fetch(URL, {
-		// 	method,
+		if (editStudent._id) {
+			URL = `${baseUrl}/${editStudent._id}`;
+			method = "PUT";
+			console.log('pre', editStudent);
+		} else {
+			URL = `${baseUrl}`;
+			method = "POST";
+			console.log('not', editStudent);
+		}
+		// const res = await fetch(`${baseUrl}`, {
+		// 	method: 'POST',
 		// 	headers: {
 		// 		'Content-Type': 'application/json'
 		// 	},
 		// 	body: JSON.stringify(data)
 		// });
+
+		const res = await fetch(URL, {
+			method,
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(data)
+		});
 
 		const post = res.json();
 		dispatch('studentCreated', post);
@@ -71,6 +73,9 @@
 		// 	// redirect: '/'
 		// }
 	};
+
+	console.log("data", data)
+	console.log("editStudent", editStudent)
 </script>
 
 <section class=" mt-6">
@@ -82,7 +87,7 @@
 					<div class="flex flex-col w-3/4 ">
 						<label for="name" class="py-2  text-base">Name</label>
 						<input
-							bind:value={data.name}
+							bind:value={editStudent.name}
 							type="text"
 							class="p-2 outline-none rounded-sm  border border-gray-400"
 							id="name"
@@ -92,7 +97,7 @@
 					<div class="flex flex-col w-3/4 ">
 						<label for="gender" class="py-2 text-base">Gender</label>
 						<input
-							bind:value={data.gender}
+							bind:value={editStudent.gender}
 							type="text"
 							class="p-2 outline-none rounded-sm  border border-gray-400"
 							id="gender"
@@ -102,7 +107,7 @@
 					<div class="flex flex-col w-3/4 ">
 						<label for="grade" class="py-2 text-base">Grade</label>
 						<input
-							bind:value={data.grade}
+							bind:value={editStudent.grade}
 							type="number"
 							class="p-2 outline-none rounded-sm  border border-gray-400"
 							id="grade"
@@ -112,14 +117,14 @@
 					<div class="flex flex-col w-3/4 ">
 						<label for="school" class="py-2 text-base">School</label>
 						<input
-							bind:value={data.school}
+							bind:value={editStudent.school}
 							type="text"
 							class="p-2 outline-none rounded-sm  border border-gray-400"
 							id="school"
 							placeholder="Enter School"
 						/>
 					</div>
-					<button type="submit" class="mt-8 bg-gray-500 py-2 px-2 rounded-sm w-1/4">Submit</button>
+					<button type="submit" class="mt-8 bg-gray-500 py-2 px-2 rounded-sm w-1/4">{editStudent._id ? "Update" : "Submit"}</button>
 				</form>
 			{:else}
 				<p>Loading...</p>

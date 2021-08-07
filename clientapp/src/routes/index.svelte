@@ -3,13 +3,13 @@
 		const baseUrl = 'http://localhost:5003/api/student';
 		const res = await fetch(baseUrl);
 		const data = await res.json();
-		console.log(data);
+		// console.log(data);
 		return {
 			props: { students: data }
 		};
 	}
 </script>
-
+ 
 <script>
 	import { onMount } from 'svelte';
 	import { fade } from 'svelte/transition';
