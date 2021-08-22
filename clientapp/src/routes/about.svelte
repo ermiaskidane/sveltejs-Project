@@ -12,8 +12,6 @@
 		school: ''
 	};
 
-	// reacativity for the edit button
-	// $: data = editStudent;
 
 	const baseUrl = 'http://localhost:5003/api/student';
 
@@ -30,15 +28,7 @@
 
 		loading = true;
 
-		// if (editStudent._id) {
-		// 	URL = `${baseUrl}/${editStudent._id}`;
-		// 	method = 'PUT';
-		// 	console.log('pre', editStudent);
-		// } else {
-		// 	URL = `${baseUrl}`;
-		// 	method = 'POST';
-		// 	console.log('not', editStudent);
-		// }
+		
 		const res = await fetch(`${baseUrl}`, {
 			method: 'POST',
 			headers: {
@@ -65,11 +55,6 @@
 			school: ''
 		};
 		loading = false;
-		// return {
-		// 	status: 307,
-		// 	headers: { Location: '/' },
-		// 	// redirect: '/'
-		// }
 	};
 </script>
 
