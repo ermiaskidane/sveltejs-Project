@@ -25,11 +25,6 @@
         _id: ""
     }
 
-    // edit student Detail
-    let editStudentDetails = (data) => {
-        editStudent = data
-        goto("/about")
-    }
 
     // delete the student post
     let deleteStudent = async (id) => {
@@ -53,8 +48,7 @@
 		<p class="">Gender: {data.gender}</p>
 		<p class="">School: {data.school}</p>
 	</div>
-	<div class="flex justify-between max-w-xs mt-3  mx-auto py-4">
-		<button class="border rounded-sm border-blue-500 px-6 py-1 text-lg bg-blue-300" on:click={editStudentDetails(data)}>Edit</button>
+	<div class="flex justify-center max-w-xs mt-3  mx-auto py-4">
 		<button  on:click={deleteStudent(data._id)} class="border rounded-sm border-red-700 px-4 py-1 text-lg bg-red-400">Delete</button>
 	</div>
 </div>
